@@ -1,0 +1,48 @@
+.git
+/src/DatabaseUrl.php
+
+/vendor
+/node_modules/
+
+users/*
+
+# Environment-specific files
+/.env
+/.env.local
+/.env.*.local
+
+# PHPStorm project files
+.idea/
+
+# Operating system files
+.DS_Store # macOS specific
+Thumbs.db # Windows specific
+
+# Log and cache files
+/log/
+/cache/
+
+# PHPUnit
+/phpunit-watcher.yml
+/phpunit-watcher-result.cache
+.phpunit.result.cache
+
+# User-specific files
+/.phpstorm.meta.php
+
+# Composer files
+/composer.phar
+
+# Docker volumes
+/docker/volumes/
+
+# PHP Stan
+tmp/phpstan
+
+infection.phar
+infection.json5
+
+# Ignore environment files
+.env
+
+/tests/coverageReport
