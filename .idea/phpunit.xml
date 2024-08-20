@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PHPUnit">
+    <option name="directories">
+      <list>
+        <option value="$PROJECT_DIR$/posts-service/tests" />
+        <option value="$PROJECT_DIR$/api-gateway/tests" />
+        <option value="$PROJECT_DIR$/comments-service/tests" />
+        <option value="$PROJECT_DIR$/users-service/tests" />
+      </list>
+    </option>
+  </component>
+</project>

@@ -1,0 +1,157 @@
+services:
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx:/etc/nginx/conf.d:cached
+      - ./api-gateway:/var/www:cached
+    depends_on:
+      - api-gateway
+      - users-service
+      - posts-service
+      - comments-service
+    networks:
+      - app-network
+
+  api-gateway:
+    build:
+      context: ./api-gateway
+      dockerfile: Dockerfile.Gateway
+    container_name: api-gateway
+    volumes:
+      - ./api-gateway:/var/www:cached
+    networks:
+      - app-network
+
+  users-service:
+    build:
+      context: ./users-service
+      dockerfile: Dockerfile.Users
+    container_name: users-service
+    volumes:
+      - ./users-service:/var/www:cached
+    networks:
+      - app-network
+
+  users-service-nginx:
+    image: nginx:latest
+    container_name: users-service-nginx
+    ports:
+      - "8006:80"
+    volumes:
+      - ./users-service/nginx:/etc/nginx/conf.d:cached
+      - ./users-service:/var/www:cached
+    depends_on:
+      - users-service
+    networks:
+      - app-network
+
+  posts-service:
+    build:
+      context: ./posts-service
+      dockerfile: Dockerfile.Posts
+    container_name: posts-service
+    volumes:
+      - ./posts-service:/var/www:cached
+    networks:
+      - app-network
+
+  posts-service-nginx:
+    image: nginx:latest
+    container_name: posts-service-nginx
+    ports:
+      - "8007:80"
+    volumes:
+      - ./posts-service/nginx:/etc/nginx/conf.d:cached
+      - ./posts-service:/var/www:cached
+    depends_on:
+      - posts-service
+    networks:
+      - app-network
+
+  comments-service:
+    build:
+      context: ./comments-service
+      dockerfile: Dockerfile.Comments
+    container_name: comments-service
+    volumes:
+      - ./comments-service:/var/www:cached
+    networks:
+      - app-network
+
+  comments-service-nginx:
+    image: nginx:latest
+    container_name: comments-service-nginx
+    ports:
+      - "8008:80"
+    volumes:
+      - ./comments-service/nginx:/etc/nginx/conf.d:cached
+      - ./comments-service:/var/www:cached
+    depends_on:
+      - comments-service
+    networks:
+      - app-network
+
+  users-db:
+    image: mysql:8.0
+    container_name: users-db
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: users_db
+      MYSQL_USER: user
+      MYSQL_PASSWORD: pass
+    volumes:
+      - users-db-data:/var/lib/mysql
+    ports:
+      - "3307:3306"
+    networks:
+      - app-network
+
+  posts-db:
+    image: mysql:8.0
+    container_name: posts-db
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: posts_db
+      MYSQL_USER: user
+      MYSQL_PASSWORD: pass
+    volumes:
+      - posts-db-data:/var/lib/mysql
+    ports:
+      - "3308:3306"
+    networks:
+      - app-network
+
+  comments-db:
+    image: mysql:8.0
+    container_name: comments-db
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: comments_db
+      MYSQL_USER: user
+      MYSQL_PASSWORD: pass
+    volumes:
+      - comments-db-data:/var/lib/mysql
+    ports:
+      - "3309:3306"
+    networks:
+      - app-network
+
+  adminer:
+    image: adminer:latest
+    container_name: adminer
+    ports:
+      - "8080:8080"
+    networks:
+      - app-network
+
+volumes:
+  users-db-data:
+  posts-db-data:
+  comments-db-data:
+
+networks:
+  app-network:
+    driver: bridge
