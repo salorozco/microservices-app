@@ -39,4 +39,23 @@ class UserRepository implements UserRepositoryInterface
 
         return null;
     }
+
+    public function findAllUsers(): array
+    {
+        $query = 'SELECT * FROM users';
+        $stmt = $this->connection->prepare($query);
+        $resultSet = $stmt->executeQuery();
+
+        while ($row = $resultSet->fetchAssociative()) {
+            $users[] = new User(
+                (int)$row['id'],
+                $row['name'],
+                $row['email'],
+                new DateTimeImmutable($row['created_at']),
+                new DateTimeImmutable($row['updated_at'])
+            );
+        }
+
+        return $users;
+    }
 }

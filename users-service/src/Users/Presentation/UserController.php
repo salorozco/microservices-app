@@ -17,6 +17,26 @@ class UserController
         $this->userService = $userService;
     }
 
+
+    public function index(Request $request): Response
+    {
+        $users = $this->userService->getAllUsers();
+
+        $data = [];
+
+        foreach ($users as $user) {
+            $data[] = [
+                'id' => $user->getId(),
+                'name' => $user->getName(),
+                'email' => $user->getEmail(),
+                'created_at' => $user->getCreatedAt(),
+                'updated_at' => $user->getUpdatedAt(),
+            ];
+        }
+
+        return new Response(json_encode($data), Response::HTTP_OK, ['Content-Type' => 'application/json']);
+    }
+
     public function show(Request $request, array $vars): Response
     {
         $userId = (int)$vars['id'];

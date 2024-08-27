@@ -32,4 +32,17 @@ class UserController
             throw $e;
         }
     }
+
+    public function showAll(Request $request): Response
+    {
+        try {
+            $apiResponse = $this->client->request('GET', "http://users-service-nginx/users");
+            return new Response($apiResponse->getContent(), $apiResponse->getStatusCode(), ['Content-Type' => 'application/json']);
+        } catch (ClientException $e) {
+            if ($e->getCode() === 404) {
+                return new Response('Userw not found', 404);
+            }
+            throw $e;
+        }
+    }
 }
