@@ -12,6 +12,10 @@
       <sourceFolder url="file://$MODULE_DIR$/users-service/tests" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/posts-service/Migrations" isTestSource="false" packagePrefix="Migrations\" />
       <sourceFolder url="file://$MODULE_DIR$/users-service/Migrations" isTestSource="false" packagePrefix="Migrations\" />
+      <sourceFolder url="file://$MODULE_DIR$/comments-service/spec" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/spec" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/users-service/spec" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/api-gateway/vendor/composer" />
       <excludeFolder url="file://$MODULE_DIR$/api-gateway/vendor/doctrine/cache" />
       <excludeFolder url="file://$MODULE_DIR$/api-gateway/vendor/doctrine/dbal" />

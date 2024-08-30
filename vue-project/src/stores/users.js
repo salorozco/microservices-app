@@ -10,7 +10,10 @@ export const useUserStore = defineStore('users', {
     }),
     getters: {
         getUserById: (state) => {
-            return (id) => state.users.find(user => user.id === id);
+            return (id) => {
+                const normalizedId = Number(id); // Convert the id to a number
+                return state.users.find(user => user.id === normalizedId);
+            };
         },
     },
     actions: {
@@ -32,10 +35,14 @@ export const useUserStore = defineStore('users', {
             this.isLoading = true;
             this.error = null;
             const user = this.getUserById(id);
+            console.log(user)
+
             if (user) {
                 this.user = user;
                 this.isLoading = false;
+                console.log('getting user from store')
             } else {
+                console.log('getting user from api')
                 try {
                     const response = await UserService.getUserById(id);
                     this.user = response.data;

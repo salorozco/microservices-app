@@ -1,7 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import UsersList from '../components/Users/UsersList.vue';
-import User from "@/components/Users/User.vue";
 import UserView from "@/views/UserView.vue";
 
 const router = createRouter({
@@ -29,7 +28,7 @@ const router = createRouter({
       path: '/users/:id',
       name: 'User',
       component: UserView,
-      props: (route) => ({ user: route.params.user })
+      props: true,
     }
   ]
 })

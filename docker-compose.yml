@@ -10,7 +10,6 @@ services:
       - ./vue-project:/app:cached
       - ./vue-project/nginx:/etc/nginx/conf.d:cached
       - ./vue-project/dist:/usr/share/nginx/html
-    command: npm run dev
     networks:
       - app-network
   nginx:

@@ -3,8 +3,11 @@ FROM node:latest AS build-stage
 
 # Set the working directory
 WORKDIR /app
+
 # Install Nginx
 RUN apt-get update && apt-get install -y nginx
+
 EXPOSE 5173
-# Run the development server
-CMD ["npm", "run", "dev"]
+
+# Set entrypoint to run the entrypoint.sh script
+ENTRYPOINT ["/bin/bash", "/app/bin/entrypoint.sh"]
