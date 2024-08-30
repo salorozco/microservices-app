@@ -1,15 +1,29 @@
 services:
+  react-frontend:
+    build:
+      context: ./react-frontend
+      dockerfile: Dockerfile
+    container_name: react-frontend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./react-frontend:/app:cached
+      - ./react-frontend/nginx:/etc/nginx/conf.d:cached
+      - ./react-frontend/.next:/usr/share/nginx/html
+    networks:
+      - app-network
+
   vue-frontend:
     build:
-      context: ./vue-project
+      context: vue-frontend
       dockerfile: Dockerfile
     container_name: vue-frontend
     ports:
       - "5173:5173"
     volumes:
-      - ./vue-project:/app:cached
-      - ./vue-project/nginx:/etc/nginx/conf.d:cached
-      - ./vue-project/dist:/usr/share/nginx/html
+      - ./vue-frontend:/app:cached
+      - ./vue-frontend/nginx:/etc/nginx/conf.d:cached
+      - ./vue-frontend/dist:/usr/share/nginx/html
     networks:
       - app-network
   nginx:
