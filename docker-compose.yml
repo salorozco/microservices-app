@@ -26,6 +26,20 @@ services:
       - ./vue-frontend/dist:/usr/share/nginx/html
     networks:
       - app-network
+
+  angular-frontend:
+    build:
+      context: ./angular-frontend
+      dockerfile: Dockerfile
+    container_name: angular-frontend
+    ports:
+      - "4200:4200"
+    volumes:
+      - ./angular-frontend:/app:cached
+      - ./angular-frontend/nginx:/etc/nginx/conf.d:cached
+      - ./angular-frontend/dist/angular-frontend/browser:/usr/share/nginx/html
+    networks:
+      - app-network
   nginx:
     image: nginx:latest
     container_name: nginx

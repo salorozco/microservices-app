@@ -1,0 +1,6 @@
+<div *ngIf="user">
+  <h2>{{ user.name }}</h2>
+  <p>Email: {{ user.email }}</p>
+  <p>Created At: {{ user.createdAt | date }}</p>
+  <p>Updated At: {{ user.updatedAt | date }}</p>
+</div>
