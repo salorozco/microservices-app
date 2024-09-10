@@ -20,6 +20,4 @@ $injector->delegate(Connection::class, function () use ($injector): Connection {
     return $injector->make(ConnectionFactory::class)->create();
 });
 
-
-// Return the configured injector
 return $injector;

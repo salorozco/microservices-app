@@ -7,4 +7,5 @@ namespace App\Comments\Domain;
 interface CommentRepositoryInterface
 {
     public function findCommentById(int $id): ?Comment;
+    public function findCommentsByPostIds(array $postIds): ?array;
 }

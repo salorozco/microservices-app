@@ -27,6 +27,7 @@ class UserRepository implements UserRepositoryInterface
 
         $data = $result->fetchAssociative();
 
+
         if ($data) {
             return new User(
                 (int) $data['id'],

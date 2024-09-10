@@ -43,4 +43,29 @@ class PostRepository implements PostRepositoryInterface
 
         return null;
     }
+
+    /**
+     * @throws \Exception
+     */
+    public function findPostByUserId(int $userId): array
+    {
+        $query = 'SELECT * FROM posts WHERE user_id = :id';
+        $stmt = $this->connection->prepare($query);
+        $stmt->bindValue('id', $userId);
+        $result = $stmt->executeQuery(); // For Doctrine DBAL 3.x, use executeQuery()
+
+        // Loop through the results and create Post objects
+        while ($row = $result->fetchAssociative()) {
+            $posts[] = new Post(
+                (int)$row['id'],
+                $row['title'],
+                $row['content'],
+                (int)$row['user_id'],
+                new DateTimeImmutable($row['created_at']),
+                new DateTimeImmutable($row['updated_at'])
+            );
+        }
+
+        return $posts;
+    }
 }

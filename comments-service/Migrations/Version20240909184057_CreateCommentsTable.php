@@ -10,36 +10,36 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20240819215445_CreatePostsTable extends AbstractMigration
+final class Version20240909184057_CreateCommentsTable extends AbstractMigration
 {
     public function getDescription(): string
     {
-        return 'Create Posts Table';
+        return 'Create Comments Table';
     }
 
     public function up(Schema $schema): void
     {
         // Drop the table if it exists
-        $this->addSql('DROP TABLE IF EXISTS posts');
+        $this->addSql('DROP TABLE IF EXISTS comments');
 
-        // Create the posts table
+        // Create the comments table
         $this->addSql('
-            CREATE TABLE posts (
+            CREATE TABLE comments (
                 id INT UNSIGNED AUTO_INCREMENT NOT NULL,
-                title VARCHAR(255) NOT NULL,
+                post_id INT UNSIGNED NOT NULL,
                 content TEXT NOT NULL,
-                user_id INT UNSIGNED NOT NULL,
                 created_at DATETIME NOT NULL,
                 updated_at DATETIME NOT NULL,
                 PRIMARY KEY(id),
-                KEY user_id (user_id)
+                KEY post_id (post_id)
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
         ');
+
     }
 
     public function down(Schema $schema): void
     {
-        // this down() migration is auto-generated, please modify it to your needs
-        $this->addSql('DROP TABLE posts');
+        $this->addSql('DROP TABLE comments');
+
     }
 }

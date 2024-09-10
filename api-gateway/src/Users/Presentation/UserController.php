@@ -40,7 +40,7 @@ class UserController
             return new Response($apiResponse->getContent(), $apiResponse->getStatusCode(), ['Content-Type' => 'application/json']);
         } catch (ClientException $e) {
             if ($e->getCode() === 404) {
-                return new Response('Userw not found', 404);
+                return new Response('User  not found', 404);
             }
             throw $e;
         }

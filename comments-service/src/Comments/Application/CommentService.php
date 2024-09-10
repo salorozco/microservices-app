@@ -19,4 +19,9 @@ class CommentService
     {
         return $this->commentRepository->findCommentById($id);
     }
+
+    public function getCommentsByPostIds(array $postIds)
+    {
+        return $this->commentRepository->findCommentsByPostIds($postIds);
+    }
 }
