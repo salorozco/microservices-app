@@ -2,8 +2,6 @@
   <div class="post-container">
     <div class="post-footer">Posted on: {{ formatDate( post.created_at.date ) }}</div>
     <div class="post-header">{{ post.content }}</div>
-
-    <!-- Comments inside the post -->
     <CommentList v-if="post.comments && post.comments.length" :comments="post.comments" />
   </div>
 </template>
