@@ -31,22 +31,35 @@ onMounted(() => {
 });
 </script>
 
-<style>
+<style scoped>
 .user-list-container {
   margin-top: 40px;
 }
+
 .user-list {
-  list-style-type: disc;
-  padding-left: 0;
-  margin-left: 1.2em;
+  list-style-type: none; /* Remove default list style */
+  padding-left: 0; /* Remove default padding */
+  margin-left: 0; /* Remove default margin */
 }
 
 .user-list-item {
   display: block; /* Ensures that list items don't have extra spaces */
-  margin-bottom: 10px;
+  margin-bottom: 20px; /* Space between each user */
+  padding: 15px; /* Padding inside each item */
+  border: 1px solid #ddd; /* Border around each user */
+  border-radius: 5px; /* Rounded corners */
+  background-color: #f9f9f9; /* Light background for contrast */
 }
 
 .user-link {
-  display: inline-block;
+  display: block;
+  text-decoration: none; /* Remove link underline */
+  color: inherit; /* Inherit text color */
+  font-size: 18px; /* Increase font size */
+}
+
+.user-link:hover {
+  background-color: #e0e0e0; /* Highlight on hover */
+  border-radius: 5px; /* Maintain rounded corners on hover */
 }
 </style>
