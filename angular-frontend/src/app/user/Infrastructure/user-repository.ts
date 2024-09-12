@@ -8,6 +8,7 @@ import { User } from '../domain/user.model';
 })
 export class UserRepository {
   private apiUrl = 'http://localhost/users';
+  private apiProfileUrl = 'http://localhost/profile';
 
   constructor(private http: HttpClient) {}
 

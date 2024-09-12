@@ -1,17 +1,19 @@
 <template>
-  <div class="user-list-container">
-    <h2>User List</h2>
-    <p v-if="isLoading">Loading users...</p>
-    <p v-if="!isLoading && !users.length">No users found.</p>
-    <ul v-if="!isLoading && users.length" class="user-list">
-      <li v-for="user in users" :key="user.id" class="user-list-item">
-        <RouterLink :to="{ name: 'User', params: { id: user.id } }"  class="user-link">
-          <User :user="user" />
-        </RouterLink>
-      </li>
-    </ul>
-    <p v-if="error">{{ error }}</p>
-  </div>
+  <main>
+    <div class="user-list-container">
+      <h1 class="user-list-heading">User List</h1>
+      <p v-if="isLoading">Loading users...</p>
+      <p v-if="!isLoading && !users.length">No users found.</p>
+      <ul v-if="!isLoading && users.length" class="user-list">
+        <li v-for="user in users" :key="user.id" class="user-list-item">
+          <RouterLink :to="{ name: 'User', params: { id: user.id } }" class="user-link">
+            <User :user="user" />
+          </RouterLink>
+        </li>
+      </ul>
+      <p v-if="error">{{ error }}</p>
+    </div>
+  </main>
 </template>
 
 <script setup>
@@ -32,10 +34,13 @@ onMounted(() => {
 </script>
 
 <style scoped>
+
 .user-list-container {
   margin-top: 40px;
 }
-
+.user-list-heading {
+  font-weight: bold;
+}
 .user-list {
   list-style-type: none; /* Remove default list style */
   padding-left: 0; /* Remove default padding */
@@ -43,12 +48,15 @@ onMounted(() => {
 }
 
 .user-list-item {
-  display: block; /* Ensures that list items don't have extra spaces */
-  margin-bottom: 20px; /* Space between each user */
-  padding: 15px; /* Padding inside each item */
-  border: 1px solid #ddd; /* Border around each user */
-  border-radius: 5px; /* Rounded corners */
-  background-color: #f9f9f9; /* Light background for contrast */
+  display: block;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.user-list-item a {
+  padding: 15px;
 }
 
 .user-link {

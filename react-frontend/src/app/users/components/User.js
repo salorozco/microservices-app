@@ -1,9 +1,11 @@
-// app/users/User.js
+import React from "react";
 
 export default function User({ user }) {
     return (
-        <li className="mb-2">
-            <strong>{user.name}</strong> - {user.email}
-        </li>
+        <div>
+            <h4 className="text-1xl font-bold ">{user.name}</h4>
+            <p> {user.email}</p>
+        </div>
+
     );
 }

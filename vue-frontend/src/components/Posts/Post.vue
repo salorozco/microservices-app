@@ -1,7 +1,7 @@
 <template>
   <div class="post-container">
-    <div class="post-footer">Posted on: {{ formatDate( post.created_at.date ) }}</div>
-    <div class="post-header">{{ post.content }}</div>
+    <div class="post-header">Posted on: {{ formatDate( post.created_at.date ) }}</div>
+    <div class="post-footer">{{ post.content }}</div>
     <CommentList v-if="post.comments && post.comments.length" :comments="post.comments" />
   </div>
 </template>
@@ -21,13 +21,13 @@ const props = defineProps(['post']);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.post-header {
+.post-footer{
   font-weight: bold;
   font-size: 18px;
   margin-bottom: 10px;
 }
 
-.post-footer {
+.post-header {
   font-size: 14px;
   color: #888;
 }

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3>{{ user.name }}</h3>
+    <h4 class="border-l">{{ user.name }}</h4>
     <p>{{ user.email }}</p>
   </div>
 </template>
@@ -15,3 +15,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+  h4{
+    font-weight: bold;
+  }
+</style>

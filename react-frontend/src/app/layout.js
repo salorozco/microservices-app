@@ -18,8 +18,6 @@ export default function RootLayout({ children }) {
         <body className={inter.className}>
         <nav className="p-6 bg-gray-800 text-white">
             <Link href="/" className="mr-4">Home</Link>
-            <Link href="/about" className="mr-4">About</Link>
-            <Link href="/contact" className="mr-4">Contact</Link>
             <Link href="/users" className="mr-4">Users</Link>
         </nav>
         <ClientProvider>

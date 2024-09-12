@@ -14,7 +14,7 @@ export async function fetchUsers() {
 
 export async function fetchUserById(id) {
     try {
-        const response = await fetch(`http://localhost/users/${id}`);
+        const response = await fetch(`http://localhost/profile/${id}`);
         if (!response.ok) {
             throw new Error('Failed to fetch user');
         }

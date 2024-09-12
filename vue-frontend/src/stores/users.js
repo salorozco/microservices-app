@@ -56,7 +56,6 @@ export const useUserStore = defineStore('users', {
             try {
                 const response = await UserService.getProfileByUserId(id);
                 const { user, posts } = response.data;
-                console.log(response.data)
 
                 this.user = {
                     ...user,  // Spread the user properties

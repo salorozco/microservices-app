@@ -2,7 +2,6 @@
   <div class="comment-container">
     <div class="comment-date">Commented on: {{ formatDate( comment.createdAt.date ) }}</div>
     <div class="comment-content">{{ comment.content }}</div>
-
   </div>
 </template>
 

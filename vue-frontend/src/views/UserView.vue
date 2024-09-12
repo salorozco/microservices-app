@@ -1,5 +1,6 @@
 <template>
-  <div class="profile-container">
+  <main>
+   <div class="profile-container">
     <h2 class="profile-header">User Profile</h2>
     <div class="user-details">
       <User v-if="userData" :user="userData" />
@@ -7,7 +8,8 @@
 
     <PostsList v-if="userData && userData.posts" :posts="userData.posts" />
     <p v-else>Loading...</p>
-  </div>
+    </div>
+  </main>
 </template>
 
 <script setup>
@@ -30,7 +32,7 @@ onMounted(async () => {
 <style scoped>
 /* User Profile Styles */
 .profile-container {
-  max-width: 800px;
+  display: block;
   margin: 0 auto;
   padding: 20px;
   background-color: #f9f9f9;

@@ -10,7 +10,13 @@ export const fetchUsers = createAsyncThunk('users/fetchUsers', async () => {
 
 // Thunk to fetch a user by ID
 export const fetchUserById = createAsyncThunk('users/fetchUserById', async (id) => {
-    return await apiFetchUserById(id); // Make sure this function returns the correct data
+    const response = await apiFetchUserById(id);
+    const { user, posts } = response;
+
+    return {
+        ...user,  // Spread user properties
+        posts    // Add posts array as a property on the user object
+    };
 });
 
 const userSlice = createSlice({
