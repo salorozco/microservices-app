@@ -8,6 +8,7 @@ import { User } from '../domain/user.model';
 })
 export class UserRepository {
   private apiUrl = 'http://localhost/users';
+  private apiProfileUrl = 'http://localhost/profile';
 
   constructor(private http: HttpClient) {}
 
@@ -16,7 +17,7 @@ export class UserRepository {
   }
 
   getUserById(id: number): Observable<User> {
-    return this.http.get<User>(`${this.apiUrl}/${id}`);
+    return this.http.get<User>(`${this.apiProfileUrl}/${id}`);
   }
 
   createUser(user: User): Observable<User> {

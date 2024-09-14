@@ -1,23 +1,12 @@
 <template>
   <div>
-    <h2>Comment List</h2>
-    <Comment v-for="comment in comments" :key="comment.id" :comment="comment" />
+    <div v-for="comment in comments" :key="comment.id">
+      <Comment :comment="comment"></Comment>
+    </div>
   </div>
 </template>
 
-<script>
-import { mapState } from 'vuex';
+<script setup>
 import Comment from './Comment.vue';
-
-export default {
-  computed: {
-    ...mapState('comments', ['comments']),
-  },
-  components: {
-    Comment,
-  },
-  created() {
-    this.$store.dispatch('comments/fetchComments');
-  },
-};
+const props = defineProps(['comments']);
 </script>

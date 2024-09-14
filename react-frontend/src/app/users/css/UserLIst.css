@@ -1,0 +1,34 @@
+.user-list-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.user-list {
+    list-style-type: none; /* Remove default list style */
+    padding-left: 0; /* Remove default padding */
+    margin-left: 0; /* Remove default margin */
+}
+
+.user-list-item {
+    display: block;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.user-list-item a {
+    padding: 15px;
+}
+
+.user-link {
+    display: block;
+    text-decoration: none; /* Remove link underline */
+    color: inherit; /* Inherit text color */
+    font-size: 18px; /* Increase font size */
+}
+
+.user-link:hover {
+    background-color: #e0e0e0; /* Highlight on hover */
+    border-radius: 5px; /* Maintain rounded corners on hover */
+}

@@ -19,4 +19,9 @@ class PostService
     {
         return $this->postRepository->findPostById($id);
     }
+
+    public function getPostByUser(int $userId)
+    {
+        return $this->postRepository->findPostByUserId($userId);
+    }
 }

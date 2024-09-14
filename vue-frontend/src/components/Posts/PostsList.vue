@@ -1,23 +1,12 @@
 <template>
-  <div>
-    <h2>Post List</h2>
-    <Post v-for="post in posts" :key="post.id" :post="post" />
+  <div class="post-list">
+    <div v-for="post in posts" :key="post.id">
+      <Post :post="post" />
+    </div>
   </div>
 </template>
 
-<script>
-import { mapState } from 'vuex';
+<script setup>
 import Post from './Post.vue';
-
-export default {
-  computed: {
-    ...mapState('posts', ['posts']),
-  },
-  components: {
-    Post,
-  },
-  created() {
-    this.$store.dispatch('posts/fetchPosts');
-  },
-};
+const props = defineProps(['posts']);
 </script>

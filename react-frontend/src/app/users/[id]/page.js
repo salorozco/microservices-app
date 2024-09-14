@@ -4,6 +4,9 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchUserById } from '../slice/userSlice';
+import User from "@/app/users/components/User";
+import PostList from "@/app/users/components/PostList";
+import './ProfilePage.css'
 
 export default function UserDetail({ params }) {
     const dispatch = useDispatch();
@@ -24,10 +27,18 @@ export default function UserDetail({ params }) {
     if (!user) return <p>No user data found.</p>;
 
     return (
-        <div className="p-10">
-            <h1 className="text-4xl font-bold mb-4">{user.name}</h1>
-            <p>Email: {user.email}</p>
-            <p>Created At: {user.createdAt}</p>
+        <div className="profile-container">
+            <h2 className="profile-header">User Profile</h2>
+
+            <div className="user-details">
+                <User user={user}/>
+            </div>
+
+            {user.posts ? (
+                <PostList posts={user.posts}/>
+            ) : (
+                <p>Loading posts...</p>
+            )}
         </div>
     );
 }

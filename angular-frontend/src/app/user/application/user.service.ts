@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import {map, Observable} from 'rxjs';
 import { UserRepository } from '../Infrastructure/user-repository';
 import { User } from '../domain/user.model';
 
@@ -14,7 +14,9 @@ export class UserService {
   }
 
   getUserById(id: number): Observable<User> {
-    return this.userRepository.getUserById(id);
+    return this.userRepository.getUserById(id).pipe(
+      map(data => new User(data))
+    );
   }
 
   createUser(user: User): Observable<User> {

@@ -16,3 +16,4 @@ docker-compose exec vue-frontend npm install
 # Run migrations
 docker-compose exec users-service vendor/bin/doctrine-migrations migrate --no-interaction
 docker-compose exec posts-service vendor/bin/doctrine-migrations migrate --no-interaction
+docker-compose exec comments-service vendor/bin/doctrine-migrations migrate --no-interaction

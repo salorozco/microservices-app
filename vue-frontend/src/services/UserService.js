@@ -7,4 +7,7 @@ export default {
     getUserById(id) {
         return apiClient.get(`/users/${id}`);
     },
+    getProfileByUserId(id) {
+        return apiClient.get(`/profile/${id}`);
+    },
 };

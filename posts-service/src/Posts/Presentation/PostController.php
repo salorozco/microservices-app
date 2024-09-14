@@ -37,4 +37,28 @@ class PostController
 
         return new Response($responseContent, 200, ['Content-Type' => 'application/json']);
     }
+
+    public function showPostsByUserId(Request $request, array $vars): Response
+    {
+        $userId = (int)$vars['userId'];
+        $posts = $this->postService->getPostByUser($userId);
+
+        if (empty($posts)) {
+            return new Response('No post found', 404);
+        }
+
+        $responseContent = [];
+        foreach ($posts as $post) {
+            $responseContent[] = [
+                'id' => $post->getId(),
+                'title' => $post->getTitle(),
+                'content' => $post->getContent(),
+                'userId' => $post->getUserId(),
+                'createdAt' => $post->getCreatedAt()->format(DATE_ATOM),
+                'updatedAt' => $post->getUpdatedAt()->format(DATE_ATOM),
+            ];
+        }
+
+        return new Response(json_encode($responseContent), 200, ['Content-Type' => 'application/json']);
+    }
 }

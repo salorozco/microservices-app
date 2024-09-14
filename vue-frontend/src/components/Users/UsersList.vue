@@ -1,17 +1,19 @@
 <template>
-  <div class="user-list-container">
-    <h2>User List</h2>
-    <p v-if="isLoading">Loading users...</p>
-    <p v-if="!isLoading && !users.length">No users found.</p>
-    <ul v-if="!isLoading && users.length" class="user-list">
-      <li v-for="user in users" :key="user.id" class="user-list-item">
-        <RouterLink :to="{ name: 'User', params: { id: user.id } }"  class="user-link">
-          <User :user="user" />
-        </RouterLink>
-      </li>
-    </ul>
-    <p v-if="error">{{ error }}</p>
-  </div>
+  <main>
+    <div class="user-list-container">
+      <h1 class="user-list-heading">User List</h1>
+      <p v-if="isLoading">Loading users...</p>
+      <p v-if="!isLoading && !users.length">No users found.</p>
+      <ul v-if="!isLoading && users.length" class="user-list">
+        <li v-for="user in users" :key="user.id" class="user-list-item">
+          <RouterLink :to="{ name: 'User', params: { id: user.id } }" class="user-link">
+            <User :user="user" />
+          </RouterLink>
+        </li>
+      </ul>
+      <p v-if="error">{{ error }}</p>
+    </div>
+  </main>
 </template>
 
 <script setup>
@@ -31,22 +33,41 @@ onMounted(() => {
 });
 </script>
 
-<style>
+<style scoped>
+
 .user-list-container {
   margin-top: 40px;
 }
+.user-list-heading {
+  font-weight: bold;
+}
 .user-list {
-  list-style-type: disc;
-  padding-left: 0;
-  margin-left: 1.2em;
+  list-style-type: none; /* Remove default list style */
+  padding-left: 0; /* Remove default padding */
+  margin-left: 0; /* Remove default margin */
 }
 
 .user-list-item {
-  display: block; /* Ensures that list items don't have extra spaces */
-  margin-bottom: 10px;
+  display: block;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.user-list-item a {
+  padding: 15px;
 }
 
 .user-link {
-  display: inline-block;
+  display: block;
+  text-decoration: none; /* Remove link underline */
+  color: inherit; /* Inherit text color */
+  font-size: 18px; /* Increase font size */
+}
+
+.user-link:hover {
+  background-color: #e0e0e0; /* Highlight on hover */
+  border-radius: 5px; /* Maintain rounded corners on hover */
 }
 </style>

@@ -14,7 +14,7 @@ final class Version20240819215445_CreatePostsTable extends AbstractMigration
 {
     public function getDescription(): string
     {
-        return 'Create Posts Tabled';
+        return 'Create Posts Table';
     }
 
     public function up(Schema $schema): void

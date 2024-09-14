@@ -1,6 +1,6 @@
 {
-  "name": "sal/users",
-  "description": "Users Service for the microservices architecture",
+  "name": "sal/comments",
+  "description": "Comments Service for the microservices architecture",
   "minimum-stability": "dev",
   "require": {
     "php": "^8.2",
@@ -18,7 +18,8 @@
   },
   "autoload": {
     "psr-4": {
-      "App\\": "src/"
+      "App\\": "src/",
+      "Migrations\\": "Migrations/"
     }
   },
   "scripts": {

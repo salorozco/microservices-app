@@ -19,8 +19,7 @@ class CommentController
 
     public function show(Request $request, array $vars): Response
     {
-        $commentId = (int)$vars['id'];
-        $comment = $this->commentService->getComment($commentId);
+        $comment = $this->commentService->getComment((int)$vars['id']);
 
         if ($comment === null) {
             return new Response('Comment not found', 404);
@@ -33,5 +32,28 @@ class CommentController
         ]);
 
         return new Response($responseContent, 200, ['Content-Type' => 'application/json']);
+    }
+
+    public function showCommentsByPostIds(Request $request, array $vars): Response
+    {
+        $postIds = $request->query->all('postIds');
+        $comments = $this->commentService->getCommentsByPostIds($postIds);
+
+        if (empty($postIds)) {
+            return new Response('Comment not found', 404);
+        }
+
+        $responseContent = [];
+        foreach ($comments as $comment) {
+            $responseContent[] = [
+                'id' => $comment->getId(),
+                'post_id' => $comment->getPostId(),
+                'content' => $comment->getContent(),
+                'createdAt' => $comment->getCreatedAt()->format(DATE_ATOM),
+                'updatedAt' => $comment->getUpdatedAt()->format(DATE_ATOM),
+            ];
+        }
+
+        return new Response(json_encode($responseContent), 200, ['Content-Type' => 'application/json']);
     }
 }
