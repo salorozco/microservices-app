@@ -1,0 +1,5 @@
+<div class="post-container">
+  <div class="post-header">Posted on: {{ post?.createdAt | date }}</div>
+  <div class="post-footer">{{ post?.content }}</div>
+ <app-comment-list [comments]="post?.comments || []"></app-comment-list>
+</div>

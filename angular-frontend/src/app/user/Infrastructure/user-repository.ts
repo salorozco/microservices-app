@@ -17,7 +17,7 @@ export class UserRepository {
   }
 
   getUserById(id: number): Observable<User> {
-    return this.http.get<User>(`${this.apiUrl}/${id}`);
+    return this.http.get<User>(`${this.apiProfileUrl}/${id}`);
   }
 
   createUser(user: User): Observable<User> {

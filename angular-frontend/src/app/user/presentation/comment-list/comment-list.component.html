@@ -1,0 +1,4 @@
+<div *ngIf="comments.length > 0">
+  <app-comment-detail *ngFor="let comment of comments" [comment]="comment"></app-comment-detail>
+</div>
+<p *ngIf="comments.length === 0">No comments available.</p>

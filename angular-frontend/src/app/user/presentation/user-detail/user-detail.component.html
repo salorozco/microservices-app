@@ -1,6 +1,10 @@
 <div *ngIf="user">
-  <h2>{{ user.name }}</h2>
-  <p>Email: {{ user.email }}</p>
-  <p>Created At: {{ user.createdAt | date }}</p>
-  <p>Updated At: {{ user.updatedAt | date }}</p>
+  <div class="profile-container">
+    <h2 class="profile-header">User Profile</h2>
+    <div class="user-details">
+      <h2>{{ user.name }}</h2>
+      <p>Email: {{ user.email }}</p>
+    </div>
+    <app-post-list [posts]="user.posts"></app-post-list>
+  </div>
 </div>

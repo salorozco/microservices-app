@@ -3,11 +3,12 @@ import {CommonModule} from "@angular/common";
 import {Component, OnInit} from "@angular/core";
 import {UserService} from "../../application/user.service";
 import {User} from "../../domain/user.model";
+import {PostListComponent} from "../post-list/post-list.component";
 
 @Component({
   selector: 'app-user-detail',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, PostListComponent],
   templateUrl: './user-detail.component.html',
   styleUrls: ['./user-detail.component.css']
 })
