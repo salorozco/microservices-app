@@ -4,13 +4,15 @@
   display: block;
   background-color: #f9f9f9;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 20px;
   box-sizing: border-box;
 }
 
-.profile-header, .posts-header {
+.profile-header,
+.posts-header {
   font-size: 24px;
   margin-bottom: 20px;
+  margin-top: 0;
   color: #333;
 }
 
