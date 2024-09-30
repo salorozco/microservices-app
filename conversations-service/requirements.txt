@@ -1,0 +1,5 @@
+# conversation-service/requirements.txt
+Flask
+Flask-Injector
+SQLAlchemy
+psycopg2-binary

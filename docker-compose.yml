@@ -135,6 +135,22 @@ services:
     networks:
       - app-network
 
+  conversation-service:
+    build:
+      context: ./conversations-service
+      dockerfile: Dockerfile
+    container_name: conversations-service
+    ports:
+      - "5000:5000"  # Exposing port 5000 for Flask
+    volumes:
+      - ./conversations-service:/app:cached
+    depends_on:
+      - conversations-db
+    networks:
+      - app-network
+    environment:
+      - DATABASE_URL=postgresql://user:password@conversations-db:5432/conversations_db
+
   users-db:
     image: mysql:8.0
     container_name: users-db
@@ -180,6 +196,20 @@ services:
     networks:
       - app-network
 
+  conversations-db:
+    image: postgres:13
+    container_name: conversations-db
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: conversations_db
+    volumes:
+      - conversations-db-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - app-network
+
   adminer:
     image: adminer:latest
     container_name: adminer
@@ -192,6 +222,7 @@ volumes:
   users-db-data:
   posts-db-data:
   comments-db-data:
+  conversations-db-data:
 
 networks:
   app-network:
