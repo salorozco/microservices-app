@@ -5,6 +5,7 @@ namespace App\Profile\Application\Factory;
 use App\Profile\Application\Dtos\AggregatedProfileDTO;
 use App\Profile\Application\Dtos\PostDTO;
 use App\Profile\Infrastructure\CommentRepository;
+use App\Profile\Infrastructure\ConversationRepository;
 use App\Profile\Infrastructure\PostRepository;
 use App\Profile\Infrastructure\UserRepository;
 use Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface;
@@ -14,19 +15,22 @@ use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 
 class AggregatedProfileFactory
 {
-    private $userRepository;
-    private $postRepository;
-    private $commentRepository;
+    private UserRepository $userRepository;
+    private PostRepository $postRepository;
+    private CommentRepository $commentRepository;
+    private ConversationRepository $conversationRepository;
 
 
     public function __construct(
         UserRepository $userRepository,
         PostRepository $postRepository,
-        CommentRepository $commentRepository
+        CommentRepository $commentRepository,
+        ConversationRepository $conversationRepository,
     ) {
         $this->userRepository = $userRepository;
         $this->postRepository = $postRepository;
         $this->commentRepository = $commentRepository;
+        $this->conversationRepository = $conversationRepository;
     }
 
     /**
@@ -61,11 +65,20 @@ class AggregatedProfileFactory
             }
         }
 
-        // Step 6: Create the AggregatedUserDTO
+        // Step 6: Attach conversations to profile
+        $conversations = $this->conversationRepository->findConversationByUserId($userId);
+
+
+        // Step 7: Create the AggregatedProfileDTO
         $aggregatedUser = new AggregatedProfileDTO($user);
 
         foreach ($posts as $post) {
             $aggregatedUser->addPost($post);
+        }
+
+        // Add conversations to the aggregate
+        foreach ($conversations as $conversation) {
+            $aggregatedUser->addConversation($conversation);
         }
 
         return $aggregatedUser;

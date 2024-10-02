@@ -32,13 +32,10 @@ class ProfileController
 
         $aggregatedUser = $this->aggregatedProfileFactory->create($userId);
 
-        $postsArray = array_map(function ($post) {
-            return $post->toArray();
-        }, $aggregatedUser->getPosts());
+        // Serialize the entire aggregate to an array
+        $profileData = $aggregatedUser->toArray();
 
-        return new JsonResponse([
-            'user' => $aggregatedUser->getUser()->toArray(),
-            'posts' => $postsArray,
-        ]);
+        // Return the JSON response
+        return new JsonResponse($profileData);
     }
 }
