@@ -1,4 +1,5 @@
 import Image from "next/image";
+import '../icons/fontAwsome'; // Import Font Awesome configuration
 
 export default function Home() {
   return (
