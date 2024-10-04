@@ -1,10 +1,24 @@
 <div *ngIf="user">
   <div class="profile-container">
-    <h2 class="profile-header">User Profile</h2>
+    <h2 class="profile-header">User Profile
+      <button
+        class="icon-button"
+        (click)="onIconClick()"
+        aria-label="View Conversations
+          ">
+        <fa-icon [icon]="['fas', 'comments']"></fa-icon>
+      </button>
+    </h2>
     <div class="user-details">
       <h2>{{ user.name }}</h2>
       <p>Email: {{ user.email }}</p>
     </div>
     <app-post-list [posts]="user.posts"></app-post-list>
   </div>
+
+  <app-conversations-modal
+    *ngIf="isConversationsOpen"
+    [conversations]="user.conversations"
+    (closeModal)="closeModal()">
+  </app-conversations-modal>
 </div>

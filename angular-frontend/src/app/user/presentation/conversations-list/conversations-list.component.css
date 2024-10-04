@@ -1,0 +1,31 @@
+/* src/app/components/conversations-list/conversations-list.component.css */
+
+.conversation-list {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 0;
+}
+
+.conversation-item {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.conversation-item h4 {
+  margin-top: 0;
+}
+
+.messages {
+  margin-top: 5px;
+  padding-left: 15px;
+}
+
+.message {
+  margin-bottom: 5px;
+}
+
+.sent-at {
+  display: block;
+  font-size: 0.8rem;
+  color: #666;
+}

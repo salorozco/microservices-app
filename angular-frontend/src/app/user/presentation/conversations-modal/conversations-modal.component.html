@@ -1,0 +1,20 @@
+<!-- src/app/components/conversations-modal/conversations-modal.component.html -->
+
+<div class="modal-overlay" (click)="onClose()">
+  <div class="modal-content" (click)="stopPropagation($event)">
+    <div class="modal-header">
+      <h2>Conversations</h2>
+      <button
+        class="close-button"
+        (click)="onClose()"
+        aria-label="Close"
+        >x
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-body">
+        <app-conversations-list [conversations]="conversations"></app-conversations-list>
+      </div>
+    </div>
+  </div>
+</div>

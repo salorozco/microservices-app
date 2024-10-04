@@ -1,0 +1,19 @@
+<!-- src/app/components/conversations-list/conversations-list.component.html -->
+
+<div *ngIf="conversations.length > 0; else noConversations">
+  <ul class="conversation-list">
+    <li *ngFor="let conversation of conversations" class="conversation-item">
+      <h4>{{ conversation.title }}</h4>
+      <div class="messages">
+        <div *ngFor="let message of conversation.messages" class="message">
+          <strong>User {{ message.sender_id }}:</strong> {{ message.content }}
+          <span class="sent-at">{{ message.sentAt }}</span>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<ng-template #noConversations>
+  <p>No conversations found.</p>
+</ng-template>
