@@ -1,7 +1,7 @@
-.git
-.idea/
-
 # Python bytecode files
 __pycache__/
 *.py[cod]
 *$py.class
+
+# IDE directories and files
+.idea/
