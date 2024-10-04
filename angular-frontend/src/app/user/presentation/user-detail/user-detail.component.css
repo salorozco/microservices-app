@@ -23,3 +23,19 @@
   margin-bottom: 30px;
   border-radius: 5px;
 }
+
+.icon-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #007BFF; /* Icon color */
+  font-size: 1.5rem; /* Icon size */
+  padding: 0;
+  display: flex;
+  align-items: center;
+  float: right;
+}
+
+.icon-button:hover {
+  color: #0056b3; /* Darker color on hover */
+}
