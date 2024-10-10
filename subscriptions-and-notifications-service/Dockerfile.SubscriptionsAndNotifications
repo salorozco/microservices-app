@@ -1,0 +1,38 @@
+# Stage 1: Builder
+FROM maven:3.8.5-eclipse-temurin-17 AS builder
+
+# Set the working directory
+WORKDIR /workdir/server
+
+# Copy the Maven build file
+COPY pom.xml /workdir/server/pom.xml
+
+# Correct server port configuration in application.properties
+COPY src/main/resources /workdir/server/src/main/resources
+
+# Download dependencies (use caching if possible)
+RUN mvn dependency:go-offline
+
+# Copy the source code
+COPY src /workdir/server/src
+
+# Build the JAR file
+RUN mvn clean package
+
+# Print the contents of the target folder to verify JAR creation
+RUN ls -la /workdir/server/target
+
+# Stage 2: Runtime
+FROM eclipse-temurin:17-jre-focal
+
+# Set the working directory
+WORKDIR /app
+
+# Expose the application port
+EXPOSE 8080
+
+# Copy the JAR file from the builder stage
+COPY --from=builder /workdir/server/target/*.jar /app/app.jar
+
+# Command to run the JAR file
+ENTRYPOINT ["java", "-jar", "/app/app.jar"]
