@@ -1,5 +1,8 @@
 FROM maven:3.8.5-eclipse-temurin-17
 
+# Install inotify-tools
+RUN apt-get update && apt-get install -y inotify-tools
+
 # Set the working directory
 WORKDIR /app
 
@@ -16,6 +19,7 @@ COPY src /app/src
 
 # Expose the application port
 EXPOSE 8080
+EXPOSE 35729
 
 # Start the application using Spring Boot's Maven plugin
 ENTRYPOINT ["/app/entrypoint.sh"]
