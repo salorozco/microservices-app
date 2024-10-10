@@ -6,7 +6,9 @@ use App\Profile\Application\Dtos\AggregatedProfileDTO;
 use App\Profile\Application\Dtos\PostDTO;
 use App\Profile\Infrastructure\CommentRepository;
 use App\Profile\Infrastructure\ConversationRepository;
+use App\Profile\Infrastructure\NotificationRepository;
 use App\Profile\Infrastructure\PostRepository;
+use App\Profile\Infrastructure\SubscriptionRepository;
 use App\Profile\Infrastructure\UserRepository;
 use Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface;
@@ -19,6 +21,9 @@ class AggregatedProfileFactory
     private PostRepository $postRepository;
     private CommentRepository $commentRepository;
     private ConversationRepository $conversationRepository;
+    private NotificationRepository $notificationRepository;
+
+    private SubscriptionRepository $subscriptionRepository;
 
 
     public function __construct(
@@ -26,11 +31,15 @@ class AggregatedProfileFactory
         PostRepository $postRepository,
         CommentRepository $commentRepository,
         ConversationRepository $conversationRepository,
+        NotificationRepository $notificationRepository,
+        SubscriptionRepository $subscriptionRepository,
     ) {
         $this->userRepository = $userRepository;
         $this->postRepository = $postRepository;
         $this->commentRepository = $commentRepository;
         $this->conversationRepository = $conversationRepository;
+        $this->notificationRepository = $notificationRepository;
+        $this->subscriptionRepository = $subscriptionRepository;
     }
 
     /**
@@ -68,8 +77,14 @@ class AggregatedProfileFactory
         // Step 6: Attach conversations to profile
         $conversations = $this->conversationRepository->findConversationByUserId($userId);
 
+        // Step 7: Attach Notifications to profile
+        $notifications = $this->notificationRepository->findNotificationsByUserId($userId);
 
-        // Step 7: Create the AggregatedProfileDTO
+        //Step 9: Attach Subscriptions
+        $subscriptions = $this->subscriptionRepository->findSubscriptionsByUserId($userId);
+
+
+        // Step 8: Create the AggregatedProfileDTO
         $aggregatedUser = new AggregatedProfileDTO($user);
 
         foreach ($posts as $post) {
@@ -79,6 +94,14 @@ class AggregatedProfileFactory
         // Add conversations to the aggregate
         foreach ($conversations as $conversation) {
             $aggregatedUser->addConversation($conversation);
+        }
+
+        foreach ($notifications as $notification) {
+            $aggregatedUser->addNotification($notification);
+        }
+
+        foreach ($subscriptions as $subscription) {
+            $aggregatedUser->addSubscription($subscription);
         }
 
         return $aggregatedUser;
