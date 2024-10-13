@@ -5,6 +5,13 @@
      <div class="icon-container">
        <span
            class="icon-button"
+           @click="showSubscriptions"
+           title="View Notifications"
+           aria-label="View Notifications">
+        <i class="fas fa-users"></i>
+      </span>
+       <span
+           class="icon-button"
            @click="showNotifications"
            title="View Notifications"
            aria-label="View Notifications">
@@ -32,6 +39,12 @@
     <p v-else>Loading...</p>
     </div>
 
+    <SubscriptionsModal
+        :visible="isSubscriptionVisible"
+        :subscriptions="userData.subscriptions"
+        @close="isSubscriptionVisible = false"
+    />
+
     <ConversationsModal
         :visible="isModalVisible"
         :conversations="userData.conversations"
@@ -53,6 +66,7 @@ import User from "@/components/Users/User.vue";
 import PostsList from "@/components/Posts/PostsList.vue";
 import ConversationsModal from "@/components/Conversations/ConversationsModal.vue";
 import NotificationsModal from "@/components/Notifications/NotificationsModal.vue";
+import SubscriptionsModal from "@/components/Subscriptions/SubscriptionsModal.vue";
 
 // Props received from the route
 const props = defineProps(['id']);
@@ -66,6 +80,7 @@ const userData = ref({
 });
 const isModalVisible = ref(false);
 const isNotificationVisible = ref(false);
+const isSubscriptionVisible = ref(false);
 
 const showConversations = () => {
     isModalVisible.value = true;
@@ -74,6 +89,10 @@ const showConversations = () => {
 const showNotifications = () => {
   isNotificationVisible.value = true;
 };
+
+const showSubscriptions = () => {
+  isSubscriptionVisible.value = true;
+}
 
 onMounted(async () => {
   await userStore.fetchUserProfile(props.id);
