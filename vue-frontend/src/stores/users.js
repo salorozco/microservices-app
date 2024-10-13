@@ -55,12 +55,14 @@ export const useUserStore = defineStore('users', {
             this.error = null;
             try {
                 const response = await UserService.getProfileByUserId(id);
-                const { user, posts, conversations } = response.data;
+                const { user, posts, conversations, notifications, subscriptions } = response.data;
 
                 this.user = {
                     ...user,  // Spread the user properties
                     posts,    // Add posts as a new property on the user object
-                    conversations
+                    conversations,
+                    notifications,
+                    subscriptions,
                 };
 
             } catch (error) {

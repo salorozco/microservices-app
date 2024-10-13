@@ -1,6 +1,5 @@
 <template>
   <Teleport to="body">
-    <!-- Wrap the modal overlay with <transition> -->
     <transition name="fade">
       <div
           v-if="visible"
@@ -12,29 +11,30 @@
       >
         <div class="modal-content">
           <div class="modal-header">
-            <h2 id="modal-title">Conversations</h2>
+            <h2 id="modal-title">Notifications</h2>
             <button class="close-button" @click="close" aria-label="Close">&times;</button>
           </div>
           <div class="modal-body">
-            <ConversationsList v-if="conversations.length" :conversations="conversations" />
-            <p v-else>No conversations found.</p>
+            <NotificationsList v-if="notifications.length"
+            :notifications="notifications"
+            />
+            <p v-else> No Notifications Found</p>
           </div>
         </div>
       </div>
     </transition>
   </Teleport>
 </template>
-
 <script setup>
 import { defineProps, defineEmits, onMounted, onBeforeUnmount } from 'vue';
-import ConversationsList from './ConversationsList.vue'; // Adjust the path as necessary
+import NotificationsList from "@/components/Notifications/NotificationsList.vue";
 
 const props = defineProps({
   visible: {
     type: Boolean,
     required: true,
   },
-  conversations: {
+  notifications: {
     type: Array,
     required: true,
   },

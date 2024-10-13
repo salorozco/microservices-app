@@ -1,20 +1,27 @@
 <template>
   <main>
    <div class="profile-container">
-    <h2 class="profile-header">User Profile
+    <h2 class="profile-header" style="display: inline-block;">User Profile</h2>
+     <div class="icon-container">
+       <span
+           class="icon-button"
+           @click="showNotifications"
+           title="View Notifications"
+           aria-label="View Notifications">
+        <i class="fas fa-bell"></i>
+      </span>
       <span
           class="icon-button"
           @click="showConversations"
           title="View Conversations"
-          aria-label="View Conversations"
-        >
+          aria-label="View Conversations">
         <i class="fas fa-comments"></i>
       </span>
-    </h2>
+     </div>
     <div class="user-details">
       <User
           v-if="userData"
-          :user="userData"S
+          :user="userData"
         />
     </div>
 
@@ -30,6 +37,12 @@
         :conversations="userData.conversations"
         @close="isModalVisible = false"
       />
+
+    <NotificationsModal
+        :visible="isNotificationVisible"
+        :notifications="userData.notifications"
+        @close="isNotificationVisible = false"
+      />
   </main>
 </template>
 
@@ -39,6 +52,7 @@ import { useUserStore } from '@/stores/users';
 import User from "@/components/Users/User.vue";
 import PostsList from "@/components/Posts/PostsList.vue";
 import ConversationsModal from "@/components/Conversations/ConversationsModal.vue";
+import NotificationsModal from "@/components/Notifications/NotificationsModal.vue";
 
 // Props received from the route
 const props = defineProps(['id']);
@@ -46,12 +60,19 @@ const userStore = useUserStore();
 const userData = ref({
   user: null,
   posts: [],
-  conversations: []
+  conversations: [],
+  notifications: [],
+  subscriptions: []
 });
 const isModalVisible = ref(false);
+const isNotificationVisible = ref(false);
 
 const showConversations = () => {
     isModalVisible.value = true;
+};
+
+const showNotifications = () => {
+  isNotificationVisible.value = true;
 };
 
 onMounted(async () => {
@@ -77,6 +98,12 @@ onMounted(async () => {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.icon-container {
+  display: flex;
+  gap: 15px;
+  float: right;
 }
 
 /* Style for the Icon Button */
