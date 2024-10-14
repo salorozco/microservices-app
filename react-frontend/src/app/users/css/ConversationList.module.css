@@ -1,12 +1,14 @@
-/* components/Conversations/ConversationList.module.css */
-
-.conversationList {
+.conversationList,
+.notificationList,
+.subscriptionList {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-.conversationItem {
+.conversationItem,
+.notificationItem,
+.subscriptionItem {
     border-bottom: 1px solid #ddd;
     padding: 10px 0;
 }

@@ -8,7 +8,7 @@
           role="dialog"
           aria-modal="true"
           aria-labelledby="modal-title"
-      >
+        >
         <div class="modal-content">
           <div class="modal-header">
             <h2 id="modal-title">Followers</h2>

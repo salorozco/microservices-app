@@ -1,6 +1,6 @@
 <template>
   <div v-if="subscriptions.length > 0">
-    <ul class="notification-list">
+    <ul class="subscription-list">
       <li v-for="subscription in subscriptions" :key="subscription.id" class="subscription-item">
         <h4>User {{ subscription.targetId }}</h4>
         <span class="sent-at">{{ formatDate(subscription.createdAt.date) }}</span>

@@ -11,12 +11,14 @@ export const fetchUsers = createAsyncThunk('users/fetchUsers', async () => {
 // Thunk to fetch a user by ID
 export const fetchUserById = createAsyncThunk('users/fetchUserById', async (id) => {
     const response = await apiFetchUserById(id);
-    const { user, posts, conversations } = response;
+    const { user, posts, conversations, notifications, subscriptions } = response;
 
     return {
         ...user,  // Spread user properties
         posts,    // Add posts array as a property on the user object
         conversations,
+        notifications,
+        subscriptions,
     };
 });
 
