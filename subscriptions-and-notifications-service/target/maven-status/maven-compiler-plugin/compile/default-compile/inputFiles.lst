@@ -1,0 +1,16 @@
+/app/src/main/java/com/example/notifications/domain/EntityType.java
+/app/src/main/java/com/example/notifications/infrastructure/NotificationRepository.java
+/app/src/main/java/com/example/HelloWorldController.java
+/app/src/main/java/com/example/notifications/domain/Notification.java
+/app/src/main/java/com/example/notifications/application/mapper/NotificationMapper.java
+/app/src/main/java/com/example/notifications/domain/TargetType.java
+/app/src/main/java/com/example/notifications/presentation/NotificationController.java
+/app/src/main/java/com/example/notifications/application/SubscriptionService.java
+/app/src/main/java/com/example/notifications/dto/NotificationDTO.java
+/app/src/main/java/com/example/Application.java
+/app/src/main/java/com/example/notifications/domain/Subscription.java
+/app/src/main/java/com/example/notifications/domain/NotificationType.java
+/app/src/main/java/com/example/notifications/domain/NotificationStatus.java
+/app/src/main/java/com/example/notifications/application/NotificationService.java
+/app/src/main/java/com/example/notifications/presentation/SubscriptionController.java
+/app/src/main/java/com/example/notifications/infrastructure/SubscriptionRepository.java

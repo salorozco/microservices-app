@@ -1,5 +1,7 @@
 import { Post } from "./post.model";
 import { Conversation } from "./conversation_model";
+import { Notification} from "./notification.model";
+import { Subscription } from "./Subscription";
 
 export class User {
   id: number;
@@ -9,6 +11,8 @@ export class User {
   updatedAt: Date;
   posts: Post[]; // Array of posts for the user
   conversations: Conversation[];
+  notifications: Notification[];
+  subscriptions: Subscription[];
 
   constructor(data: any) {
     this.id = data.user.id;
@@ -20,5 +24,7 @@ export class User {
     // Map the posts array
     this.posts = data.posts ? data.posts.map((postData: any) => new Post(postData)) : [];
     this.conversations = data.conversations ? data.conversations.map((conversationData: any) => new Conversation(conversationData)) : [];
+    this.notifications = data.notifications ? data.notifications.map((notificationData: any) => new Notification(notificationData)) : [];
+    this.subscriptions = data.subscriptions ? data.subscriptions.map((subscriptionData: any) => new Subscription(subscriptionData)) : [];
   }
 }

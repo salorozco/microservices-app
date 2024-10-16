@@ -1,0 +1,12 @@
+<div *ngIf="subscriptions.length > 0; else noSubscriptions">
+  <ul class="subscription-list">
+    <li *ngFor="let subscription of subscriptions" class="subscription-item">
+      <h4>User {{ subscription.userId }}</h4>
+      <span class="sent-at">{{ subscription.createdAt  }}</span>
+    </li>
+  </ul>
+</div>
+
+<ng-template #noSubscriptions>
+  <p>No subscriptions found.</p>
+</ng-template>

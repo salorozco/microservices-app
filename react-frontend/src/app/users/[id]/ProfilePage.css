@@ -78,3 +78,10 @@
     outline: none; /* Remove default focus outline */
     box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.5); /* Add custom focus outline for accessibility */
 }
+
+
+.icon-container {
+    display: flex;
+    gap: 15px;
+    float: right;
+}

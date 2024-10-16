@@ -1,0 +1,20 @@
+<div class="modal-overlay" (click)="onClose()">
+  <div class="modal-content" (click)="stopPropagation($event)">
+    <div class="modal-header">
+      <h2>Notifications</h2>
+      <button
+        class="close-button"
+        (click)="onClose()"
+        aria-label="Close"
+      >x
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-body">
+        <app-notifications-list
+          [notifications]="notifications">
+        </app-notifications-list>
+      </div>
+    </div>
+  </div>
+</div>

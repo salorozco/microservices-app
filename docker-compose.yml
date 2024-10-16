@@ -151,6 +151,23 @@ services:
     environment:
       - DATABASE_URL=postgresql://user:password@conversations-db:5432/conversations_db
 
+  subscriptions-and-notifications-service:
+    build:
+      context: ./subscriptions-and-notifications-service
+      dockerfile: Dockerfile.Dev
+    container_name: subscriptions-and-notifications-service
+    ports:
+      - "8082:8080"
+      - "35729:35729"
+    volumes:
+      - ./subscriptions-and-notifications-service:/app:cached
+    depends_on:
+      - subscriptions-and-notifications-db
+    networks:
+      - app-network
+    environment:
+      - DATABASE_URL=postgresql://user:password@subscriptions-and-notifications-db:5432/subscriptions_and_notifications_db
+
   users-db:
     image: mysql:8.0
     container_name: users-db
@@ -210,6 +227,20 @@ services:
     networks:
       - app-network
 
+  subscriptions-and-notifications-db:
+    image: postgres:13
+    container_name: subscriptions-and-notifications-db
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: subscriptions_and_notifications_db
+    volumes:
+      - subscriptions-and-notifications-db-data:/var/lib/postgresql/data
+    ports:
+      - "5434:5432"
+    networks:
+      - app-network
+
   adminer:
     image: adminer:latest
     container_name: adminer
@@ -223,6 +254,7 @@ volumes:
   posts-db-data:
   comments-db-data:
   conversations-db-data:
+  subscriptions-and-notifications-db-data:
 
 networks:
   app-network:

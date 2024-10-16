@@ -1,4 +1,3 @@
-<!-- src/components/Conversations/ConversationsModal.js.vue -->
 <template>
   <Teleport to="body">
     <!-- Wrap the modal overlay with <transition> -->
