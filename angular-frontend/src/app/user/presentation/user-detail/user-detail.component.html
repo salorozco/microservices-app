@@ -1,6 +1,21 @@
 <div *ngIf="user">
   <div class="profile-container">
-    <h2 class="profile-header">User Profile
+    <h2 class="profile-header">User Profile</h2>
+    <div class="icon-container">
+      <button
+        class="icon-button"
+        (click)="onSubscriptionIconClick()"
+        aria-label="View Notifications
+          ">
+        <fa-icon [icon]="['fas', 'users']"></fa-icon>
+      </button>
+      <button
+        class="icon-button"
+        (click)="onNotificationIconClick()"
+        aria-label="View Notifications
+          ">
+        <fa-icon [icon]="['fas', 'bell']"></fa-icon>
+      </button>
       <button
         class="icon-button"
         (click)="onIconClick()"
@@ -8,13 +23,25 @@
           ">
         <fa-icon [icon]="['fas', 'comments']"></fa-icon>
       </button>
-    </h2>
+    </div>
     <div class="user-details">
       <h2>{{ user.name }}</h2>
       <p>Email: {{ user.email }}</p>
     </div>
     <app-post-list [posts]="user.posts"></app-post-list>
   </div>
+
+  <app-subscriptions-modal
+    *ngIf="isSubscriptionsOpen"
+    [subscriptions]="user.subscriptions"
+    (closeModal)="closeSubscriptionsModal()" >
+  </app-subscriptions-modal>
+
+  <app-notifications-modal
+    *ngIf="isNotificationsOpen"
+    [notifications]="user.notifications"
+    (closeModal)="closeNotificationsModal()" >
+  </app-notifications-modal>
 
   <app-conversations-modal
     *ngIf="isConversationsOpen"

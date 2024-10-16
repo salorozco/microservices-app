@@ -14,6 +14,13 @@
   margin-bottom: 20px;
   margin-top: 0;
   color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.profile-header{
+  display: inline-block;
 }
 
 .user-details {
@@ -25,17 +32,21 @@
 }
 
 .icon-button {
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: #007BFF; /* Icon color */
-  font-size: 1.5rem; /* Icon size */
+  background: none; /* Remove default button background */
+  border: none;     /* Remove default button border */
+  cursor: pointer;  /* Change cursor to pointer on hover */
+  margin-left: 10px; /* Space between text and icon */
+  color: #007BFF;   /* Icon color */
+  font-size: 1.2rem; /* Icon size */
   padding: 0;
-  display: flex;
-  align-items: center;
-  float: right;
 }
 
 .icon-button:hover {
   color: #0056b3; /* Darker color on hover */
+}
+
+.icon-container {
+  display: flex;
+  gap: 15px;
+  float: right;
 }
