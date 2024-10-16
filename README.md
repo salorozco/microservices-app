@@ -18,8 +18,10 @@ This repository contains a **Domain-Driven Design (DDD)** demo application built
     1. **Users Service**: Handles user management.
     2. **Posts Service**: Manages the creation and retrieval of posts.
     3. **Comments Service**: Manages comments tied to posts.
+    4. **Conversations Service** Manages conversations tied to a user profile
+    5. **Notifications and Subscriptions Service** Manages notifications and subscriptions.
 
-  Each service is isolated, with its own database and runs behind its own **Nginx** instance.
+  Each service is isolated, with its own database and runs behind its own **Nginx/Tomcat** instance.
 
 - **API Gateway**: The app includes an **API Gateway** that aggregates data from the different services. It provides a unified **Profile Endpoint** that combines user data, all posts made by the user, and comments related to those posts.
 
@@ -47,10 +49,10 @@ This repository contains a **Domain-Driven Design (DDD)** demo application built
 
 ## Tech Stack:
 
-- **Backend**: PHP, following microservice architecture principles with DDD, SOLID, and layered architecture.
+- **Backend**: PHP, Python, Java following microservice architecture principles with DDD, SOLID, and layered architecture.
 - **API Gateway**: Aggregates data from services to expose combined profile information.
 - **Frontend**: React, Vue.js, and Angular.
-- **Databases**: MySQL for each service.
-- **Web Servers**: Nginx for each microservice.
+- **Databases**: MySQL, PostgreSql for each service.
+- **Web Servers**: Nginx, Apache Tomcat for each microservice.
 
 
